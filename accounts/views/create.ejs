@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create</title>
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+<body>
+
+
+    <div class="container">
+        <h1>Add Account</h1>
+
+        <!-- The form used to add a new account -->
+        <form action="/account" method="post" class="create">
+            <span class="label">Event</span>
+            <input type="text" name="event">
+
+            <span class="label">Time</span>
+            <input type="date" name="date">
+
+            <span class="label">Type</span>
+            <select name="type" id="type">
+                <option value="spend">Spend</option>
+                <option value="income">Income</option>
+            </select>
+
+            <span class="label">Category</span>
+            <select name="catagory" id="category">
+                <option value="">-- Select Spending Category --</option>
+                <option value="groceries">Groceries</option>
+                <option value="rent">Rent / Mortgage</option>
+                <option value="utilities">Utilities (Electricity, Water, Gas)</option>
+                <option value="internet">Internet / Phone</option>
+                <option value="transportation">Transportation (Fuel, Public Transit)</option>
+                <option value="insurance">Insurance (Health, Car, Home)</option>
+                <option value="healthcare">Healthcare / Medical</option>
+                <option value="medications">Medications / Pharmacy</option>
+                <option value="education">Tuition / Education</option>
+                <option value="childcare">Childcare / Babysitting</option>
+                <option value="pets">Pet Care</option>
+                <option value="clothing">Clothing</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="subscriptions">Subscriptions (Streaming, Magazines)</option>
+                <option value="restaurants">Dining Out / Restaurants</option>
+                <option value="gifts">Gifts / Donations</option>
+                <option value="travel">Travel</option>
+                <option value="fitness">Fitness / Gym</option>
+                <option value="personalCare">Personal Care (Haircuts, Salons)</option>
+                <option value="homeMaintenance">Home Maintenance / Repairs</option>
+                <option value="electronics">Electronics / Gadgets</option>
+                <option value="alcohol">Alcohol / Bars</option>
+                <option value="hobbies">Hobbies / Crafts</option>
+                <option value="furnishings">Furniture / Home Decor</option>
+                <option value="loans">Loan Payments</option>
+                <option value="taxes">Taxes</option>
+                <option value="savings">Savings / Investments</option>
+                <option value="miscellaneous">Miscellaneous</option>
+            </select>
+
+
+            <span class="label">Amount</span>
+            <input type="number" name="amount">
+
+            <span class="label">Note</span>
+            <textarea name="note" rows="5"></textarea>
+
+            <button>Add</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+var express = require('express');
+var router = express.Router();
+
+const shortid = require('shortid')
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+const adapter = new FileSync(__dirname+'/../data/db.json')
+
+const db=low(adapter)
+
+
+/* Main page of account book. */
+router.get('/account', function(req, res, next) {
+  let accounts = db.get('accounts').value();
+  console.log(accounts);
+  res.render('account', {accounts:accounts});
+});
+
+router.get('/account/create', function(req, res, next) {
+  res.render('create', { title: 'Express' });
+});
+
+router.post('/account',(req,res)=>{
+  let id = shortid.generate();
+  db.get('accounts').push({id:id, ...req.body}).write();
+  res.redirect('/account');
+})
+
+//deleting account
+
+router.get('/account/:id',(req,res)=>{
+    let id = req.params.id;
+    db.get('accounts').remove({id:id}).write();
+     res.redirect('/account');
+});
+
+module.exports = router;

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Book</title>
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+    <link rel="stylesheet" href="/stylesheets/helper.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome Back!</h1>
+        <% accounts.forEach(item=>{ %>
+
+            <div class="entry-container-<%=item.type%>">
+                <div class="entry-header">
+                    <p><%=item.date%></p>
+                </div>
+                <div class="entry-body clearfix">
+                    <div class="event"><%=item.event%></div>
+                    <div class="type"><span><%=item.type%></span></div>
+                    <div class="amount">$<%=item.amount%></div>
+                    <button onclick="document.location='/account/<%=item.id%>'">x</button>
+                </div>
+            </div>
+        <% }) %>
+        <button onclick="document.location='/account/create'" class="create">Create new entry</button>
+    </div>
+</body>
+</html>

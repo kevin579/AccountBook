@@ -1,0 +1,138 @@
+/* #region Layout Settings */
+.container{
+    width: 650px;
+    margin:auto;
+}
+
+button.create{
+    background-color: yellow;
+    width:650px;
+    border:none;
+    border-radius: 2px;
+    height:40px;
+}
+/* #endregion */
+
+/* #region Text settings */
+h1 {
+    font-size:2.5rem;
+    margin: 40px 0px;
+}
+
+form span.label{
+    display: block;
+    margin: 20px 0px 5px 1px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+form.create input, form.create textarea, form.create select{
+    padding:6px;
+    width:600px;
+}
+
+form textarea{
+    padding:8px;
+}
+
+form.create select{
+    width:616px;
+}
+
+form.create button{
+    background-color: skyblue;
+    border:none;
+    border-radius: 2px;
+    width:614px;
+    color:white;
+    height:35px;
+    margin-top: 40px;
+    position: relative;
+}
+
+form.create button:hover{
+    
+    top:-2px;
+    background-color: rgb(111, 181, 209);
+    box-shadow: 2px 5px 10px black;
+}
+/* #endregion */
+
+/* #region Entry*/
+.entry-container-spend, .entry-container-income{
+    width:650px;
+    height:100px;
+    border:1px solid grey;
+    margin-bottom: 20px;
+}
+
+.entry-header{
+    width:650px;
+    height:45px;
+    line-height: 45px;
+}
+
+.entry-header>p{
+    margin-left: 10px;
+}
+
+.entry-body{
+    line-height: 55px;
+
+}
+
+.entry-body >*{
+    float:left;
+    margin:0px 20px;
+}
+
+.entry-body .event{
+    width:380px;
+    /* background-color: green; */
+}
+
+.entry-body .type{
+    width:50px;
+    /* background-color: yellow; */
+}
+
+.entry-body .type >span{
+    font-size: 0.8rem;
+    padding:6px;
+    border-radius: 5px;
+}
+
+.entry-container-income .entry-header{
+    background-color: rgb(212, 255, 212); 
+}
+
+.entry-container-spend .entry-header{
+    background-color: rgb(255, 212, 212); 
+}
+
+.entry-container-income .type>span{
+    background-color: lightgreen;
+}
+
+.entry-container-spend .type>span{
+    background-color: lightcoral;
+}
+
+.entry-body .amount{
+    width:50px;
+    /* background-color: blue; */
+}
+
+.entry-body button{
+    margin:0;
+    margin-top: 16px;
+    background-color: white;
+    border:none;
+}
+
+.entry-body button:hover{
+   font-size: 20px;
+   margin-top: 13px;
+   margin-left: -1px;
+}
+/* #endregion */
