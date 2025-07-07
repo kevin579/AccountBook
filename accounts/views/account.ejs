@@ -15,13 +15,13 @@
 
             <div class="entry-container-<%=item.type%>">
                 <div class="entry-header">
-                    <p><%=item.date%></p>
+                    <p><%= moment(item.date).format('YYYY-MM-DD')%></p>
                 </div>
                 <div class="entry-body clearfix">
                     <div class="event"><%=item.event%></div>
                     <div class="type"><span><%=item.type%></span></div>
                     <div class="amount">$<%=item.amount%></div>
-                    <button onclick="document.location='/account/<%=item.id%>'">x</button>
+                    <button onclick="document.location='/account/<%=item._id%>'">x</button>
                 </div>
             </div>
         <% }) %>

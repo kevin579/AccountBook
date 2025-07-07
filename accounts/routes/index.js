@@ -6,14 +6,28 @@ const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync(__dirname+'/../data/db.json')
 
-const db=low(adapter)
+const moment = require('moment')
+console.log(moment('2023-02-24').toDate())
+
+const db = low(adapter)
+
+const mongoose = require('mongoose')
+const model = require('../database/model.js')
 
 
 /* Main page of account book. */
 router.get('/account', function(req, res, next) {
-  let accounts = db.get('accounts').value();
-  console.log(accounts);
-  res.render('account', {accounts:accounts});
+  // let accounts = db.get('accounts').value();
+  // console.log(accounts);
+  model.find().sort({time:-1})
+  .then(data=>{
+    console.log(data)
+    res.render('account',{accounts:data, moment:moment})
+  })
+  .catch(err=>{
+    res.status(500).send('reading error')
+  })
+  
 });
 
 router.get('/account/create', function(req, res, next) {
@@ -21,8 +35,19 @@ router.get('/account/create', function(req, res, next) {
 });
 
 router.post('/account',(req,res)=>{
-  let id = shortid.generate();
-  db.get('accounts').push({id:id, ...req.body}).write();
+  // let id = shortid.generate();
+  // db.get('accounts').push({id:id, ...req.body}).write();
+
+  model.create({
+    ...req.body,
+    date: moment(req.body.date).toDate()
+  }).then((err,data)=>{
+    if (err){
+      console.log(err);
+      return;
+    }
+    console.log(data);
+  })
   res.redirect('/account');
 })
 
@@ -30,8 +55,17 @@ router.post('/account',(req,res)=>{
 
 router.get('/account/:id',(req,res)=>{
     let id = req.params.id;
-    db.get('accounts').remove({id:id}).write();
-     res.redirect('/account');
+    // db.get('accounts').remove({id:id}).write();
+    model.deleteOne({_id:id}).then(
+      data=>{console.log(data);
+      res.redirect('/account')
+    }
+    ).catch(
+      err=>{
+        console.log(err);
+        res.status(500).send('errpr')
+      }
+    )
 });
 
 module.exports = router;
