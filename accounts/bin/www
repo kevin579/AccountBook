@@ -90,7 +90,9 @@ db(()=>{
     debug('Listening on ' + bind);
   }
 
-})
+},
+(err)=>
+console.log(err))
 
 /**
  * Get port from environment and store in Express.

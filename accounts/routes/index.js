@@ -7,12 +7,10 @@ const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync(__dirname+'/../data/db.json')
 
 const moment = require('moment')
-console.log(moment('2023-02-24').toDate())
-
 const db = low(adapter)
 
 const mongoose = require('mongoose')
-const model = require('../database/model.js')
+const model = require('../database/AccountModel.js')
 
 
 /* Main page of account book. */
@@ -22,10 +20,20 @@ router.get('/account', function(req, res, next) {
   model.find().sort({time:-1})
   .then(data=>{
     console.log(data)
+    // res.json({
+    //   code:'0000',
+    //   msg:'',
+    //   data:data
+    // })
     res.render('account',{accounts:data, moment:moment})
   })
   .catch(err=>{
-    res.status(500).send('reading error')
+    // res.status(500).send('reading error')
+    res.json({
+      code:'1001',
+      msg:'error',
+      data:null
+    })
   })
   
 });
@@ -46,7 +54,11 @@ router.post('/account',(req,res)=>{
       console.log(err);
       return;
     }
-    console.log(data);
+    res.json({
+      code:'0000',
+      msg:'',
+      data:data
+    })
   })
   res.redirect('/account');
 })
@@ -57,15 +69,41 @@ router.get('/account/:id',(req,res)=>{
     let id = req.params.id;
     // db.get('accounts').remove({id:id}).write();
     model.deleteOne({_id:id}).then(
-      data=>{console.log(data);
-      res.redirect('/account')
+      data=>{
+        console.log(data);
+        res.redirect('/account')
     }
     ).catch(
       err=>{
         console.log(err);
-        res.status(500).send('errpr')
+        res.status(500).send('error')
       }
     )
 });
+
+
+// query an account
+// router.get('/account/:id',(req,res)=>{
+//   let {id} = req.params;
+//   model.findById(id)
+//     .then(
+//       data=>{
+//         res.json({
+//           code:'0000',
+//           msg:'',
+//           data:data
+//         })
+//       }
+//     ).catch(
+//       err=>{
+//         console.log(err);
+//         res.json({
+//           code:'1004',
+//           msg:'Cannot load data',
+//           data:null
+//         })
+//       }
+//     ) 
+// })
 
 module.exports = router;

@@ -56,7 +56,56 @@ form.create button:hover{
     background-color: rgb(111, 181, 209);
     box-shadow: 2px 5px 10px black;
 }
+
+form.login {
+    margin-top: 100px;
+    border: 1px solid black;
+    padding:20px;
+    padding-bottom: 60px;
+}
+
+
+
+form.login input{
+    display: block;
+    margin: auto;
+    padding:6px;
+    width:400px;
+}
+
+form.login span{
+    text-align: center;
+    margin-left: -300px;
+    margin-bottom: 10px;
+}
+
+form.login button{
+    background-color: rgb(118, 197, 228);
+    border:none;
+    border-radius: 2px;
+    width:414px;
+    color:white;
+    height:35px;
+    margin-top: 40px;
+    position: relative;
+    left:50%;
+    margin-left: -207px;
+
+}
+
+form.login button:hover{
+    
+    top:-2px;
+    background-color: rgb(89, 168, 199);
+    box-shadow: 2px 5px 10px black;
+}
+
+
 /* #endregion */
+
+
+
+
 
 /* #region Entry*/
 .entry-container-spend, .entry-container-income{

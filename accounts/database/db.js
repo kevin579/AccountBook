@@ -14,7 +14,6 @@ module.exports = function(success,error){
     })
 
     mongoose.connection.on('error', ()=>{
-        console.log('Error');
         error();
     })
 
