@@ -100,7 +100,19 @@ form.login button:hover{
     box-shadow: 2px 5px 10px black;
 }
 
+form.login button.reg{
+    background-color: white;
+    color:blue;
+    margin-top: 0px;
+    font-size: 14px;
+}
 
+form.login button.reg:hover{
+    top:0;
+    background-color: rgb(255, 255, 255);
+    box-shadow: none;
+    text-decoration: underline;
+}
 /* #endregion */
 
 

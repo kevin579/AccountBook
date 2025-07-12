@@ -12,9 +12,16 @@ const db = low(adapter)
 const mongoose = require('mongoose')
 const model = require('../database/AccountModel.js')
 
+function checkLogin(req,res,next){
+  if (!req.session.uname){
+    return res.redirect('/users//login')
+  }
+  next();
+}
 
 /* Main page of account book. */
-router.get('/account', function(req, res, next) {
+router.get('/account', checkLogin,function(req, res, next) {
+
   // let accounts = db.get('accounts').value();
   // console.log(accounts);
   model.find().sort({time:-1})
@@ -38,7 +45,7 @@ router.get('/account', function(req, res, next) {
   
 });
 
-router.get('/account/create', function(req, res, next) {
+router.get('/account/create', checkLogin,function(req, res, next) {
   res.render('create', { title: 'Express' });
 });
 
@@ -65,7 +72,7 @@ router.post('/account',(req,res)=>{
 
 //deleting account
 
-router.get('/account/:id',(req,res)=>{
+router.get('/account/:id', checkLogin, (req,res)=>{
     let id = req.params.id;
     // db.get('accounts').remove({id:id}).write();
     model.deleteOne({_id:id}).then(
