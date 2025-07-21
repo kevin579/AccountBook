@@ -22,8 +22,8 @@ router.get('/reg',(req,res)=>{
 router.post('/reg',(req,res)=>{
   console.log(req.body.password);
   model.create({...req.body,password:md5(req.body.password)}).then(
-    res.json(req.body)
-
+    // res.json(req.body)
+    res.redirect('/login')
   ).catch(
     err =>{
       if (err){

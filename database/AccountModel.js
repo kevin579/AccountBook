@@ -5,7 +5,8 @@ let AccountSchema = new mongoose.Schema({
         date:{type:Date,default:18,required:true},
         type:{type:String,enum:['spend','income'],required:true},
         amount:{type:Number,required:true},
-        note:{type:String}
+        note:{type:String},
+        uname:{type:String}
 })
 
 let model = mongoose.model('accounts',AccountSchema);

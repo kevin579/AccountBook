@@ -4,10 +4,10 @@ const router = express.Router();
 const shortid = require('shortid')
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
-const adapter = new FileSync(__dirname+'/../data/db.json')
+// const adapter = new FileSync(__dirname+'/../data/db.json')
 
 const moment = require('moment')
-const db = low(adapter)
+// const db = low(adapter)
 
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
@@ -38,7 +38,7 @@ router.get('/account', checkLogin,function(req, res, next) {
 
   // let accounts = db.get('accounts').value();
   console.log(req.user)
-  model.find().sort({time:-1})
+  model.find({uname:req.session.uname}).sort({time:-1})
   .then(data=>{
     console.log(data)
     // res.json({
@@ -69,7 +69,8 @@ router.post('/account',(req,res)=>{
 
   model.create({
     ...req.body,
-    date: moment(req.body.date).toDate()
+    date: moment(req.body.date).toDate(),
+    uname : req.session.uname
   }).then((err,data)=>{
     if (err){
       console.log(err);
